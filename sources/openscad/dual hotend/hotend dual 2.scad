@@ -1,14 +1,17 @@
-print=0; // 0= veiw assembly 1= printable render
-
+print=1; // 0= veiw assembly 1= printable render
+$fn= 32;
 if (print==1){
+
 print();
 }
 else {
+rotate([0, -90, 0]){
 		hotends();
 	fans();
 	sensor();
 	mount();
 	clamp();
+	};
 };
 module print() {
 translate([60, 0, 0]) mount();
@@ -19,7 +22,7 @@ module hotends() {
 		translate([41, 15, 15]) rotate([90, 180, -90]) import("e3d_hotend.stl");
 	color("silver")
 		translate([41, 45, 15]) rotate([90, 180, -90]) import("e3d_hotend.stl");
-$fn= 32;
+
 }
 module fans() {
 	color("black")
@@ -65,7 +68,7 @@ difference() {
 
 union() {
 translate([28, 30, 48])rotate([0, 90, 0]) cylinder(r=13, h=7.75);
-translate([28, 25, 25])cube([8, 10, 18]);
+translate([28, 25, 25])cube([7.75, 10, 18]);
 translate([28, -1, 15.1])cube([7.75, 62, 12]);
 //fanmount
 translate([16, -1, 15.1])cube([12, 62, 12]);
